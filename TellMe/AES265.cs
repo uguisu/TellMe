@@ -53,13 +53,14 @@ namespace TellMe
         /// <returns>Encrypted data</returns>
         private String AESEncrypt(String inStr, Byte[] bKey, Byte[] bVector)
         {
-            Byte[] plainBytes = Encoding.UTF8.GetBytes(inStr);
-
             Byte[] Cryptograph = null;
 
-            Rijndael Aes = Rijndael.Create();
             try
             {
+                Byte[] plainBytes = Encoding.UTF8.GetBytes(inStr);
+
+                Rijndael Aes = Rijndael.Create();
+
                 using (MemoryStream Memory = new MemoryStream())
                 {
                     using (
@@ -82,7 +83,7 @@ namespace TellMe
                 Cryptograph = null;
             }
 
-            return Convert.ToBase64String(Cryptograph);
+            return (null == Cryptograph)? "" : Convert.ToBase64String(Cryptograph);
         }
 
         /// <summary>
@@ -94,12 +95,14 @@ namespace TellMe
         /// <returns>Original data</returns>
         private String AESDecrypt(String inStr, Byte[] bKey, Byte[] bVector)
         {
-            Byte[] encryptedBytes = Convert.FromBase64String(inStr);
             Byte[] original = null;
 
-            Rijndael Aes = Rijndael.Create();
             try
             {
+                Byte[] encryptedBytes = Convert.FromBase64String(inStr);
+
+                Rijndael Aes = Rijndael.Create();
+
                 using (MemoryStream Memory = new MemoryStream(encryptedBytes))
                 {
                     using (CryptoStream Decryptor = new CryptoStream(Memory,
@@ -124,7 +127,7 @@ namespace TellMe
             {
                 original = null;
             }
-            return Encoding.UTF8.GetString(original);
+            return (null == original)? "" : Encoding.UTF8.GetString(original);
         }
     }
 }

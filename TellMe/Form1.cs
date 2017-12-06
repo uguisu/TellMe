@@ -27,17 +27,20 @@ namespace TellMe
 
         private void btnToEs_Click(object sender, EventArgs e)
         {
-            // textBoxEs.Text = textBoxMe.Text;
-            textBoxEs.Text = this.aes256.Encrypt(textBoxMe.Text);
-            textBoxMe.Text = "";
+            if (!"".Equals(textBoxMe.Text.Trim()))
+            {
+                textBoxEs.Text = this.aes256.Encrypt(textBoxMe.Text);
+                textBoxMe.Text = "";
+            }
         }
 
         private void btnToMe_Click(object sender, EventArgs e)
         {
-            
-            // textBoxMe.Text = textBoxEs.Text;
-            textBoxMe.Text = this.aes256.Decrypt(textBoxEs.Text);
-            textBoxEs.Text = "";
+            if (!"".Equals(textBoxEs.Text.Trim()))
+            {
+                textBoxMe.Text = this.aes256.Decrypt(textBoxEs.Text);
+                textBoxEs.Text = "";
+            }
         }
 
         private void btnClean_Click(object sender, EventArgs e)
