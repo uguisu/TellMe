@@ -19,7 +19,11 @@ namespace TellMe
             Array.Copy(Encoding.UTF8.GetBytes(key.PadRight(this.bKey.Length)), this.bKey, this.bKey.Length);
 
             // Create Vector
-            String tmpVector = DateTime.Now.Date.ToString();
+            String tmpVector = key.Substring(0, 3);
+            char[] keyArray = key.ToCharArray();
+            Array.Sort(keyArray);
+            tmpVector += new String(keyArray);
+
             this.bVector = new Byte[16];
             Array.Copy(Encoding.UTF8.GetBytes(tmpVector.PadRight(this.bVector.Length)), this.bVector, this.bVector.Length);
         }

@@ -21,11 +21,19 @@ namespace TellMe
 
         private void btnApplyKey_Click(object sender, EventArgs e)
         {
-            this.aes256 = new AES265(maskedTextBoxKey.Text);
-            // Clean key
-            maskedTextBoxKey.Text = "";
-            // Enable buttons
-            controllButton(true);
+            if (maskedTextBoxKey.Text.Length < 8)
+            {
+                // key not long enought
+                MessageBox.Show("Key should at least 8 characters", "Wow", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else
+            {
+                this.aes256 = new AES265(maskedTextBoxKey.Text);
+                // Clean key
+                maskedTextBoxKey.Text = "";
+                // Enable buttons
+                controllButton(true);
+            }
         }
 
         private void btnToEs_Click(object sender, EventArgs e)
