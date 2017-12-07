@@ -22,7 +22,10 @@ namespace TellMe
         private void btnApplyKey_Click(object sender, EventArgs e)
         {
             this.aes256 = new AES265(maskedTextBoxKey.Text);
+            // Clean key
             maskedTextBoxKey.Text = "";
+            // Enable buttons
+            controllButton(true);
         }
 
         private void btnToEs_Click(object sender, EventArgs e)
@@ -43,10 +46,32 @@ namespace TellMe
             }
         }
 
+        /// <summary>
+        /// Clean all textbox
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnClean_Click(object sender, EventArgs e)
         {
             textBoxEs.Text = "";
             textBoxMe.Text = "";
         }
+
+        private void FormTellMe_Load(object sender, EventArgs e)
+        {
+            // Disable transfer button
+            controllButton(false);
+        }
+
+        /// <summary>
+        /// Controll button
+        /// </summary>
+        /// <param name="isEnabled"></param>
+        private void controllButton(bool isEnabled)
+        {
+            btnToMe.Enabled = isEnabled;
+            btnToEs.Enabled = isEnabled;
+        }
+
     }
 }

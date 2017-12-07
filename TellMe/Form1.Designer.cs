@@ -38,9 +38,9 @@
             this.textBoxMe = new System.Windows.Forms.TextBox();
             this.textBoxEs = new System.Windows.Forms.TextBox();
             this.tabPageSettings = new System.Windows.Forms.TabPage();
+            this.label3 = new System.Windows.Forms.Label();
             this.maskedTextBoxKey = new System.Windows.Forms.MaskedTextBox();
             this.btnApplyKey = new System.Windows.Forms.Button();
-            this.label3 = new System.Windows.Forms.Label();
             this.tabControlAll.SuspendLayout();
             this.tabPageMessage.SuspendLayout();
             this.tabPageSettings.SuspendLayout();
@@ -150,6 +150,15 @@
             this.tabPageSettings.Text = "Settings";
             this.tabPageSettings.UseVisualStyleBackColor = true;
             // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(30, 17);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(40, 13);
+            this.label3.TabIndex = 3;
+            this.label3.Text = "Covers";
+            // 
             // maskedTextBoxKey
             // 
             this.maskedTextBoxKey.Location = new System.Drawing.Point(33, 42);
@@ -168,24 +177,17 @@
             this.btnApplyKey.UseVisualStyleBackColor = true;
             this.btnApplyKey.Click += new System.EventHandler(this.btnApplyKey_Click);
             // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(30, 17);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(40, 13);
-            this.label3.TabIndex = 3;
-            this.label3.Text = "Covers";
-            // 
             // FormTellMe
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(684, 361);
             this.Controls.Add(this.tabControlAll);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
             this.Name = "FormTellMe";
             this.Text = "TellMe";
+            this.Load += new System.EventHandler(this.FormTellMe_Load);
             this.tabControlAll.ResumeLayout(false);
             this.tabPageMessage.ResumeLayout(false);
             this.tabPageMessage.PerformLayout();

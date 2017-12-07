@@ -1,0 +1,12 @@
+﻿# License
+This software licensed by Apache License 2.0.
+
+# Icon
+- The icon can be find from:
+- http://www.iconarchive.com/show/captiva-icons-by-bokehlicia/rocket-icon.html
+- Artist: bokehlicia
+- Iconset: Captiva Icons (174 icons)
+- License: GNU General Public License
+- Commercial usage: Allowed
+
+Copyright hexin0614@hotmail © 2017
