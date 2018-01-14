@@ -131,6 +131,7 @@
             // 
             // textBoxEs
             // 
+            this.textBoxEs.Font = new System.Drawing.Font("MS Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBoxEs.Location = new System.Drawing.Point(15, 29);
             this.textBoxEs.Multiline = true;
             this.textBoxEs.Name = "textBoxEs";
