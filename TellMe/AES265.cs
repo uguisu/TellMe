@@ -23,6 +23,8 @@ namespace TellMe
             char[] keyArray = key.ToCharArray();
             Array.Sort(keyArray);
             tmpVector += new String(keyArray);
+            // Invite Date time to make sure the message can only be read in the same day
+            tmpVector += System.DateTime.Now.ToString("MM/dd_yyyy");
 
             this.bVector = new Byte[16];
             Array.Copy(Encoding.UTF8.GetBytes(tmpVector.PadRight(this.bVector.Length)), this.bVector, this.bVector.Length);
