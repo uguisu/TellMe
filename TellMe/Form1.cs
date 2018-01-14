@@ -81,5 +81,10 @@ namespace TellMe
             btnToEs.Enabled = isEnabled;
         }
 
+        private void textBoxEs_MouseMove(object sender, MouseEventArgs e)
+        {
+            textBoxEs.SelectAll();
+        }
+
     }
 }

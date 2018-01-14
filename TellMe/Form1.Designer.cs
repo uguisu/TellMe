@@ -136,6 +136,7 @@
             this.textBoxEs.Name = "textBoxEs";
             this.textBoxEs.Size = new System.Drawing.Size(271, 266);
             this.textBoxEs.TabIndex = 0;
+            this.textBoxEs.MouseMove += new System.Windows.Forms.MouseEventHandler(this.textBoxEs_MouseMove);
             // 
             // tabPageSettings
             // 
