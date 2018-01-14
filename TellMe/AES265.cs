@@ -12,6 +12,16 @@ namespace TellMe
         private Byte[] bKey;
         private Byte[] bVector;
 
+        // Thees strings will be used to replace EQUAL mark
+        private static String[] MIXER = {"\"", "!", "@", "#", "$", "%", "^", "[", "]", "{", "}", "(", ")", "*", "~"};
+        private static int MIXER_LEN = MIXER.Length;
+
+        // Each line size
+        private static int LINE_SIZE = 10;
+
+        // For random
+        private static RNGCryptoServiceProvider rngCsp = new RNGCryptoServiceProvider();
+
         public AES265(String key)
         {
             // Create Key
@@ -37,7 +47,7 @@ namespace TellMe
         /// <returns>Encrypted data</returns>
         public String Encrypt(String inStr)
         {
-            return this.AESEncrypt(inStr, this.bKey, this.bVector);
+            return formatEncryptedString(this.AESEncrypt(inStr, this.bKey, this.bVector));
         }
 
         /// <summary>
@@ -47,7 +57,7 @@ namespace TellMe
         /// <returns>Original data</returns>
         public String Decrypt(String inStr)
         {
-            return this.AESDecrypt(inStr, this.bKey, this.bVector);
+            return this.AESDecrypt(cleanFormat(inStr), this.bKey, this.bVector);
         }
 
         /// <summary>
@@ -134,6 +144,83 @@ namespace TellMe
                 original = null;
             }
             return (null == original)? "" : Encoding.UTF8.GetString(original);
+        }
+
+        /// <summary>
+        /// Format encrypted string
+        /// </summary>
+        /// <param name="inPara">encrypted string</param>
+        /// <returns>Formated value</returns>
+        private String formatEncryptedString(String inPara)
+        {
+            String RTN = inPara;
+            // Check string
+            if (inPara.Contains("="))
+            {
+                int startIndex = inPara.IndexOf("=");
+                int lengthRequired = inPara.Length - startIndex;
+                RTN = inPara.Substring(0, startIndex);
+                RTN += getRandomStrings(lengthRequired);
+            }
+
+            String _wrk = RTN;
+            RTN = "";
+            while (true)
+            {
+                if (_wrk.Length > LINE_SIZE)
+                {
+                    RTN += _wrk.Substring(0, LINE_SIZE) + Environment.NewLine;
+                    _wrk = _wrk.Substring(LINE_SIZE);
+                }
+                else
+                {
+                    RTN += _wrk;
+                    break;
+                }
+            }
+
+            return RTN;
+        }
+
+        /// <summary>
+        /// Random String Generator
+        /// </summary>
+        /// <param name="length">String length</param>
+        /// <returns>Random String</returns>
+        private String getRandomStrings(int length)
+        {
+            String RTN = "";
+            for (int i = 0; i < length; i++)
+            {
+                byte[] rno = new byte[2];
+                rngCsp.GetBytes(rno);
+                int randomvalue = BitConverter.ToUInt16(rno, 0);
+                RTN += MIXER[randomvalue % MIXER_LEN];
+            }
+            return RTN;
+        }
+
+        /// <summary>
+        /// Clean all formated value
+        /// </summary>
+        /// <param name="inPara">Formated value</param>
+        /// <returns>Style free value</returns>
+        private String cleanFormat(String inPara)
+        {
+            String RTN = inPara;
+            for (int i = 0; i < MIXER_LEN; i++)
+            {
+                if (RTN.Contains(MIXER[i]))
+                {
+                    RTN = RTN.Replace(MIXER[i], "=");
+                }
+            }
+
+            if(RTN.Contains(Environment.NewLine))
+            {
+                RTN = RTN.Replace(Environment.NewLine, "");
+            }
+            return RTN;
         }
     }
 }
