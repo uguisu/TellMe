@@ -5,7 +5,7 @@ TellMe is a simple chat / text message encryption application which use *AES256*
 If you want to encrypt your text message on the internet or your company monitored all messages you sent via IM software, TellMe might be a good choice for you.
 
 ## # Required
-- Virtual Studio 2008 C#
+- Visual Studio 2008 C#
 
 ## # To use
 - Input a key. Key should at least 8 characters.
